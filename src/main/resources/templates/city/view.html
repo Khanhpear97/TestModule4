@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Product</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container mt-5">
+    <h3>City Information</h3>
+    <p>
+        <a th:href="@{/cities}" class="btn btn-primary">
+            Back to list
+        </a>
+    </p>
+    <div id="form">
+        <form th:object="${city}" method="POST">
+            <input type="hidden" th:field="*{id}"/>
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" id="name" class="form-control" th:field="*{name}" disabled/>
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label for="country" class="form-label">Country</label>
+                <input id="country" name="country" th:field="*{country.name}" disabled>
+            </div>
+            <div class="mb-3">
+                <label for="area" class="form-label">Area</label>
+                <input type="text" id="area" class="form-control" th:field="*{area}" disabled/>
+                <span th:if="${#fields.hasErrors('area')}" th:errors="*{area}" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label for="population" class="form-label">Population</label>
+                <input id="population" type="number" class="form-control" th:field="*{population}" disabled>
+                <span th:if="${#fields.hasErrors('population')}" th:errors="*{population}" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label for="GPD" class="form-label">GPD</label>
+                <input type="number" id="GPD" class="form-control" th:field="*{GPD}" disabled/>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea id="description" class="form-control" rows="5" th:field="*{description}" disabled></textarea>
+            </div>
+        </form>
+        <button><a th:href="@{/cities/__${city.id}__/update}">Update</a></button>
+        <button><a onclick="return confirm('Bạn có chắc chắn muốn xoá?')" th:href="@{/cities/__${city.id}__/delete}">Delete</a></button>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+</body>
+</html>
